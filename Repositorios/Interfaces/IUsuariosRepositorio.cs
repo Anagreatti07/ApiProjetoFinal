@@ -7,6 +7,8 @@ namespace Api.Repositorios.Interfaces
         Task<List<UsuariosModel>> GetAll();
 
         Task<UsuariosModel> GetById(int id);
+        Task<UsuariosModel> Login(string senha, string email);
+
 
         Task<UsuariosModel> InsertUsuario(UsuariosModel usuario);
 

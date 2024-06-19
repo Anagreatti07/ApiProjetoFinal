@@ -1,4 +1,5 @@
 ﻿using Api.Models;
+using Api.Repositorios;
 using Api.Repositorios.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,16 @@ namespace Api.Controllers
         {
             UsuariosModel usuario = await _usuariosRepositorio.GetById(id);
             return Ok(usuario);
+        }
+
+        [HttpGet("Login/{email}/{senha}")]
+        public async Task<bool> LoginAsync(string senha, string email)
+        {
+            UsuariosModel usuario = await _usuariosRepositorio.Login(senha, email);
+            if (usuario != null)
+                return true;
+            else
+                return false;
         }
 
         [HttpPost("CreateUsuario")]
